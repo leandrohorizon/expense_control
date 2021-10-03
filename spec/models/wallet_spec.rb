@@ -6,6 +6,7 @@ RSpec.describe Wallet, type: :model do
 
     it 'com parâmetros válidos' do
       expect(wallet).to be_valid
+      expect(Wallet.last).to eq(wallet)
     end
   end
 end
