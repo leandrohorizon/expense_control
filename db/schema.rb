@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_03_132422) do
+ActiveRecord::Schema.define(version: 2021_10_03_140041) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2021_10_03_132422) do
     t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
+  create_table "historics", force: :cascade do |t|
+    t.string "description"
+    t.integer "amount_cents"
+    t.integer "occurrence_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_historics_on_wallet_id"
+  end
+
   create_table "wallets", force: :cascade do |t|
     t.string "source"
     t.integer "amount_cents"
@@ -33,5 +43,6 @@ ActiveRecord::Schema.define(version: 2021_10_03_132422) do
     t.index ["account_id"], name: "index_wallets_on_account_id"
   end
 
+  add_foreign_key "historics", "wallets"
   add_foreign_key "wallets", "accounts"
 end
