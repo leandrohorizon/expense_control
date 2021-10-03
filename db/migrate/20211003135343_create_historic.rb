@@ -3,7 +3,7 @@ class CreateHistoric < ActiveRecord::Migration[6.1]
     create_table :historics do |t|
       t.string  :description
       t.integer :amount_cents
-      t.integer :type
+      t.integer :occurence_type
 
       t.timestamps
     end
