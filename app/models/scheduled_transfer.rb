@@ -6,7 +6,7 @@ class ScheduledTransfer < ApplicationRecord
   enum occurrence_type: %w[credit debit]
   enum frequency: %w[unique daily weekly monthly yearly]
 
-  def next_payment
+  def next_date_payment
     return false if unique?
 
     case frequency
@@ -15,7 +15,7 @@ class ScheduledTransfer < ApplicationRecord
     when 'monthly' then scheduled_date + 1.month
     when 'yearly' then scheduled_date + 1.year
     else
-      raise 'invalid frequency'
+      raise "invalid frequency: #{frequency}"
     end
   end
 
@@ -23,6 +23,7 @@ class ScheduledTransfer < ApplicationRecord
     return if quantity&.zero?
 
     decrement!(:quantity) unless quantity.nil?
+    update(scheduled_date: next_date_payment)
 
     historic.create(description: description,
                     amount_cents: amount_cents + adjustment,
