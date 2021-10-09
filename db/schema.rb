@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_105640) do
+ActiveRecord::Schema.define(version: 2021_10_09_200229) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -26,33 +26,39 @@ ActiveRecord::Schema.define(version: 2021_10_09_105640) do
 
   create_table "historics", force: :cascade do |t|
     t.string "description"
-    t.integer "amount_cents"
+    t.integer "amount"
     t.integer "occurrence_type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "wallet_id", null: false
     t.integer "scheduled_transfer_id"
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "BRL", null: false
     t.index ["scheduled_transfer_id"], name: "index_historics_on_scheduled_transfer_id"
     t.index ["wallet_id"], name: "index_historics_on_wallet_id"
   end
 
   create_table "scheduled_transfers", force: :cascade do |t|
     t.string "description"
-    t.integer "amount_cents"
+    t.integer "amount"
     t.integer "occurrence_type"
     t.integer "frequency"
     t.date "scheduled_date"
     t.integer "quantity"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "BRL", null: false
   end
 
   create_table "wallets", force: :cascade do |t|
     t.string "source"
-    t.integer "amount_cents"
+    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "account_id", null: false
+    t.integer "amount_cents", default: 0, null: false
+    t.string "amount_currency", default: "BRL", null: false
     t.index ["account_id"], name: "index_wallets_on_account_id"
   end
 
