@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2021_10_09_105640) do
   create_table "scheduled_transfers", force: :cascade do |t|
     t.string "description"
     t.integer "amount_cents"
-    t.integer "occurence_type"
+    t.integer "occurrence_type"
     t.integer "frequency"
     t.date "scheduled_date"
     t.integer "quantity"
