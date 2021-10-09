@@ -17,7 +17,7 @@ class WalletsController < ApplicationController
   def create
     @wallet = current_account.wallet.new(wallet_params)
     if @wallet.save
-      redirect_to :index
+      redirect_to @wallet
     else
       render :new
     end
@@ -38,7 +38,7 @@ class WalletsController < ApplicationController
   def wallet_params
     params
       .require(:wallet)
-      .permit(:source, :amount_cents)
+      .permit(:source, :amount)
   end
 
   def set_wallet
