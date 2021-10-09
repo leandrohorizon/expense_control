@@ -3,6 +3,6 @@ Fabricator(:scheduled_transfer) do
   amount_cents 900
   occurrence_type :credit
 
-  frequency :forever
+  frequency :monthly
   scheduled_date '03/05'
 end
