@@ -4,4 +4,5 @@ Fabricator(:scheduled_transfer) do
   occurrence_type :credit
 
   frequency :forever
+  scheduled_date '03/05'
 end
