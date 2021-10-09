@@ -53,9 +53,9 @@ MoneyRails.configure do |config|
     symbol:              "R$",
     symbol_first:        true,
     subunit:             "Subcent",
-    subunit_to_unit:     10000,
-    thousands_separator: ".",
-    decimal_mark:        ","
+    subunit_to_unit:     100,
+    thousands_separator: ",",
+    decimal_mark:        "."
   }
 
   # Specify a rounding mode
