@@ -1,0 +1,2 @@
+class ScheduledTransfer < ApplicationRecord
+end
