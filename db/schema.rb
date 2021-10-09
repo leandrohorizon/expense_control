@@ -10,48 +10,50 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_211_009_102_658) do
-  create_table 'accounts', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_accounts_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_accounts_on_reset_password_token', unique: true
+ActiveRecord::Schema.define(version: 2021_10_09_102658) do
+
+  create_table "accounts", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_accounts_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_accounts_on_reset_password_token", unique: true
   end
 
-  create_table 'historics', force: :cascade do |t|
-    t.string 'description'
-    t.integer 'amount_cents'
-    t.integer 'occurrence_type'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'wallet_id', null: false
-    t.index ['wallet_id'], name: 'index_historics_on_wallet_id'
+  create_table "historics", force: :cascade do |t|
+    t.string "description"
+    t.integer "amount_cents"
+    t.integer "occurrence_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "wallet_id", null: false
+    t.index ["wallet_id"], name: "index_historics_on_wallet_id"
   end
 
-  create_table 'scheduled_transfers', force: :cascade do |t|
-    t.string 'description'
-    t.integer 'amount_cents'
-    t.integer 'occurence_type'
-    t.integer 'frequency'
-    t.date 'scheduled_date'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
+  create_table "scheduled_transfers", force: :cascade do |t|
+    t.string "description"
+    t.integer "amount_cents"
+    t.integer "occurence_type"
+    t.integer "frequency"
+    t.date "scheduled_date"
+    t.integer "quantity"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table 'wallets', force: :cascade do |t|
-    t.string 'source'
-    t.integer 'amount_cents'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.integer 'account_id', null: false
-    t.index ['account_id'], name: 'index_wallets_on_account_id'
+  create_table "wallets", force: :cascade do |t|
+    t.string "source"
+    t.integer "amount_cents"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "account_id", null: false
+    t.index ["account_id"], name: "index_wallets_on_account_id"
   end
 
-  add_foreign_key 'historics', 'wallets'
-  add_foreign_key 'wallets', 'accounts'
+  add_foreign_key "historics", "wallets"
+  add_foreign_key "wallets", "accounts"
 end

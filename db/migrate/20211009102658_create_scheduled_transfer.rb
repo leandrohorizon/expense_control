@@ -7,6 +7,7 @@ class CreateScheduledTransfer < ActiveRecord::Migration[6.1]
 
       t.integer :frequency
       t.date :scheduled_date
+      t.integer :quantity
 
       t.timestamps
     end
