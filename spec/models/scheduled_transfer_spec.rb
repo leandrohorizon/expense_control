@@ -5,17 +5,18 @@ RSpec.describe ScheduledTransfer, type: :model do
     let(:transfer) { Fabricate(:scheduled_transfer, scheduled_date: Date.today) }
     let(:wallet) { Fabricate(:wallet, amount_cents: 200_000) }
 
-    it 'quando é a proxima' do
-      expect(transfer.next_payment).to eq(Date.today + 1.month)
+    it '.next_date_payment' do
+      expect(transfer.next_date_payment).to eq(Date.today + 1.month)
     end
 
-    it 'receber' do
+    it '.paid' do
       amount_cents_before = wallet.amount_cents
       transfer.paid!(wallet)
       amount_cents_after = amount_cents_before + transfer.amount_cents
 
       expect(transfer.quantity).to be_nil
       expect(wallet.amount_cents).to eq(amount_cents_after)
+      expect(transfer.scheduled_date).to eq(Date.today + 1.month)
     end
   end
 
@@ -28,19 +29,20 @@ RSpec.describe ScheduledTransfer, type: :model do
         occurrence_type: :debit,
 
         frequency: :monthly,
-        scheduled_date: '01/01',
+        scheduled_date: Date.today,
         quantity: 12
       )
     end
 
     let(:wallet) { Fabricate(:wallet, amount_cents: 200_000) }
 
-    it 'pagar' do
+    it '.next_date_payment' do
       amount_cents_before = wallet.amount_cents
       transfer.paid!(wallet)
       amount_cents_after = amount_cents_before - transfer.amount_cents
       expect(transfer.quantity).to eq(11)
       expect(wallet.amount_cents).to eq(amount_cents_after)
+      expect(transfer.scheduled_date).to eq(Date.today + 1.month)
     end
   end
 end
