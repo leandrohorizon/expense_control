@@ -1,0 +1,35 @@
+<section id="feature" class="feature-section pt-150">
+  <div class="container">
+    <h2>Carteiras</h2>
+    <% if @wallets.empty? %>
+      <h3>Nenhum carteira cadastrada</h3>
+    <% end %>
+    <div class="container d-flex flex-wrap">
+      <% @wallets.each do |wallet| %>
+        <div class="w-25 m-3">
+          <div class="card border-left-primary shadow h-100 py-2">
+            <div class="card-body">
+              <div class="row no-gutters align-items-center">
+                <div class="col mr-2 d-flex flex-column">
+                  <div class="d-flex flex-column mb-3">
+                    <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                      <%= link_to wallet.source, wallet %>
+                    </div>
+                    <div class="h5 mb-0 font-weight-bold text-gray-800">
+                      <%= wallet.amount.round.format %>
+                    </div>
+                  </div>
+                  <div class="col mr-2">
+                    <%= link_to 'Editar', edit_wallet_path(wallet), class: "btn btn-primary" %>
+                    <%= link_to 'Excluir', wallet, method: :delete, class: "btn btn-danger"  %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= link_to 'Cadastrar nova Carteira', new_wallet_path %>
+  </div>
+</section>

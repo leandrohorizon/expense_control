@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Banco</th>
+      <th scope="col">Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @wallet.source %></td>
+      <td><%= @wallet.amount.round.format %></td>
+    </tr>
+  </tbody>
+</table>
+
+<table class="table flex-fill">
+  <thead>
+    <tr>
+      <th scope="col">Descrição</th>
+      <th scope="col">Valor</th>
+      <th scope="col">Tipo de ocorrência</th>
+      <th scope="col">Data</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @historics.each_with_index do |historic, index| %>
+      <tr>
+        <td><%= historic.description %></td>
+        <td><%= historic.amount.format %></td>
+        <td><%= historic.occurrence_type %></td>
+        <td><%= historic.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

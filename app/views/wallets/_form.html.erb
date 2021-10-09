@@ -1,0 +1,13 @@
+<%= form_with model: @wallet do |f| %>
+  <div class="field">
+    <%= f.label :source %>
+    <%= f.text_field :source %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+
+  <%= f.submit class: 'button' %>
+<% end %>
