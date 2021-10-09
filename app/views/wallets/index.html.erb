@@ -14,7 +14,7 @@
                   <%= link_to wallet.source, wallet %>
                 </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  <%= wallet.amount_cents %>
+                  <%= wallet.amount.round.format %>
                 </div>
               </div>
             </div>
