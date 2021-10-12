@@ -1,0 +1,41 @@
+<div class="container">
+  <h2>Transferências</h2>
+
+  <%= link_to 'Criar nova transferência', new_historic_path, class: "btn btn-primary" %>
+
+  <table class="table flex-fill">
+    <thead>
+      <tr>
+        <th scope="col">Descrição</th>
+        <th scope="col">Valor</th>
+        <th scope="col">Tipo de ocorrência</th>
+        <th scope="col">Data</th>
+        <th scope="col">Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @historics.each do |historic| %>
+        <tr>
+          <td>
+            <%= historic.description %>
+          </td>
+          <td>
+            <%= historic.amount.format %>
+          </td>
+          <td>
+            <%= historic.occurrence_type %>
+          </td>
+          <td>
+            <%= historic.created_at %>
+          </td>
+          <td>
+            <div class="btn-group">
+              <%= link_to 'Editar', edit_historic_path(historic), class: "btn btn-primary" %>
+              <%= link_to 'Excluir', historic, method: :delete, class: "btn btn-danger"  %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+</div>
