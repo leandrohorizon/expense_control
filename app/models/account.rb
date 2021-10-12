@@ -5,4 +5,5 @@ class Account < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :wallet
+  has_many :historic_transfers, through: :wallet, source: :historic
 end
