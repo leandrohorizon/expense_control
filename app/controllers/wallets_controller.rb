@@ -29,7 +29,15 @@ class WalletsController < ApplicationController
     if @wallet.update(wallet_params)
       redirect_to @wallet
     else
-      render :new
+      render :edit
+    end
+  end
+
+  def destroy
+    if @wallet.destroy
+      render :index
+    else
+      render :show
     end
   end
 
