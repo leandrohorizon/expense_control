@@ -7,6 +7,8 @@ class Historic < ApplicationRecord
 
   enum occurrence_type: %w[credit debit]
 
+  monetize :amount_cents
+
   private
 
   def value

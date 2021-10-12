@@ -1,0 +1,28 @@
+<%= form_with model: @historic do |f| %>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :occurrence_type %>
+    <%= f.select :occurrence_type, [:debit, :credit] %>
+  </div>
+
+  <div class="field">
+    <%= f.label :wallet %>
+    <%= f.collection_select :wallet_id, current_account.wallet, :id, :source %>
+  </div>
+
+  <div class="field">
+    <%= f.label :created_at %>
+    <%= f.date_field :created_at %>
+  </div>
+
+  <%= f.submit class: 'button' %>
+<% end %>

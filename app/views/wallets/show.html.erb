@@ -26,7 +26,7 @@
     <% @historics.each_with_index do |historic, index| %>
       <tr>
         <td><%= historic.description %></td>
-        <td><%= historic.amount.format %></td>
+        <td><%= historic.amount.round.format %></td>
         <td><%= historic.occurrence_type %></td>
         <td><%= historic.created_at %></td>
       </tr>
