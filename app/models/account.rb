@@ -4,6 +4,6 @@ class Account < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :wallet
-  has_many :historic_transfers, through: :wallet, source: :historic
+  has_many :wallets
+  has_many :historic_transfers, through: :wallets, source: :historics
 end
