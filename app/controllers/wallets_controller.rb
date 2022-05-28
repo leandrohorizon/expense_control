@@ -3,19 +3,19 @@ class WalletsController < ApplicationController
   before_action :set_wallet, only: %i[show edit update destroy]
 
   def index
-    @wallets = current_account.wallet.all
+    @wallets = current_account.wallets.all
   end
 
   def show
-    @historics = @wallet.historic
+    @historics = @wallet.historics
   end
 
   def new
-    @wallet = current_account.wallet.new
+    @wallet = current_account.wallets.new
   end
 
   def create
-    @wallet = current_account.wallet.new(wallet_params)
+    @wallet = current_account.wallets.new(wallet_params)
     if @wallet.save
       redirect_to @wallet
     else
@@ -50,6 +50,6 @@ class WalletsController < ApplicationController
   end
 
   def set_wallet
-    @wallet = current_account.wallet.find(params[:id])
+    @wallet = current_account.wallets.find(params[:id])
   end
 end
