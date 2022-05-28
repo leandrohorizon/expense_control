@@ -1,10 +1,6 @@
 class Historic < ApplicationRecord
   belongs_to :wallet
 
-  after_create -> { update_wallet(wallet.amount_cents + value) }
-  after_update -> { update_wallet(wallet.amount_cents_before_last_save + value) }
-  after_destroy -> { update_wallet(wallet.amount_cents - value) }
-
   enum occurrence_type: %w[credit debit]
 
   monetize :amount_cents
