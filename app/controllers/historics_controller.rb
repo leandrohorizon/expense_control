@@ -5,13 +5,13 @@ class HistoricsController < ApplicationController
   def index
     @historics = current_account.historic_transfers
   end
-  
+
   def show; end
-  
+
   def new
     @historic = Historic.new
   end
-  
+
   def create
     @historic = Historic.new(historic_params)
     if @historic.save
