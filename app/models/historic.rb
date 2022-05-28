@@ -8,7 +8,7 @@ class Historic < ApplicationRecord
   private
 
   def value
-    return amount_cents * -1 if debit?
+    return -amount_cents if debit?
 
     amount_cents
   end
