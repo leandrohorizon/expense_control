@@ -12,8 +12,4 @@ class Historic < ApplicationRecord
 
     amount_cents
   end
-
-  def update_wallet(amount_cents)
-    wallet.update(amount_cents: amount_cents)
-  end
 end
