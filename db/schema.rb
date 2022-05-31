@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_09_200229) do
+ActiveRecord::Schema.define(version: 2022_05_28_210725) do
 
   create_table "accounts", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -53,11 +53,9 @@ ActiveRecord::Schema.define(version: 2021_10_09_200229) do
 
   create_table "wallets", force: :cascade do |t|
     t.string "source"
-    t.integer "amount"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "account_id", null: false
-    t.integer "amount_cents", default: 0, null: false
     t.string "amount_currency", default: "BRL", null: false
     t.index ["account_id"], name: "index_wallets_on_account_id"
   end

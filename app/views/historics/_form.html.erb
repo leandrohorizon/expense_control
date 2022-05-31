@@ -16,7 +16,7 @@
 
   <div class="field">
     <%= f.label :wallet %>
-    <%= f.collection_select :wallet_id, current_account.wallet, :id, :source %>
+    <%= f.collection_select :wallet_id, current_account.wallets, :id, :source %>
   </div>
 
   <div class="field">
